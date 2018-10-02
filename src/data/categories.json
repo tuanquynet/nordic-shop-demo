@@ -1,0 +1,17 @@
+[
+	{
+		"id": "cate001",
+		"name": "men",
+		"iconName": "men"
+	},
+	{
+		"id": "cate002",
+		"name": "women",
+		"iconName": "women"
+	},
+	{
+		"id": "cate003",
+		"name": "accessories",
+		"iconName": "accessories"
+	}
+]

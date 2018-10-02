@@ -1,0 +1,22 @@
+[
+	{
+		"id": 1,
+		"categoryId": 1,
+		"name": "Fujifilm X100T 16 MP Digital Camera (Silver)",
+		"salePrice": 520,
+		"originalPrice": 590,
+		"image": "images/product_1.png",
+		"thumbnail": "images/product_1.png",
+		"shortDescription": "product 1"
+	},
+	{
+		"id": 2,
+		"categoryId": 1,
+		"name": "Samsung CF591 Series Curved 27-Inch FHD Monitor",
+		"salePrice": 610,
+		"originalPrice": 610,
+		"image": "images/product_2.png",
+		"thumbnail": "images/product_2.png",
+		"shortDescription": "product 2"
+	}
+]

@@ -6,21 +6,26 @@ import NewArrivalBlock from './../../components/NewArrivalBlock';
 import DealOfTheWeekBlock from '../../components/DealOfTheWeekBlock';
 import ShippingInfoBar from './../../components/ShippingInfoBar/index';
 import QuickCategoryBar from '../../components/QuickCategoryBar';
+import products from '../../data/products.json';
 
 import './style.css'
 
 class HomePage extends Component {
+	constructor() {
+		super();
+	}
+
 	render() {
 		return (
 			<div className="super_container">
 				<Header />
 				<HeroBanner />
 				<QuickCategoryBar />
-				<div> 
-					<NewArrivalBlock/>
-          			<DealOfTheWeekBlock/>
-          			<ShippingInfoBar/>
-		  		</div>
+				<div>
+					<NewArrivalBlock products={products}/>
+					<DealOfTheWeekBlock/>
+					<ShippingInfoBar/>
+				</div>
 				<Footer />
 			</div>
 		);

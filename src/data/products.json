@@ -1,0 +1,51 @@
+[
+	{
+		"id": 1,
+		"categoryId": "cate001",
+		"name": "Fujifilm X100T 16 MP Digital Camera (Silver)",
+		"image": "images/product_1.png",
+		"thumbnail": "images/product_1.png",
+		"shortDescription": "product 1",
+		"originalPrice": 590,
+		"saleOf": 70,
+		"isSale": false,
+		"isNew": false,
+		"type": 1
+	},
+	{
+		"id": 2,
+		"categoryId": "cate001",
+		"name": "Samsung CF591 Series Curved 27-Inch FHD Monitor",
+		"image": "images/product_2.png",
+		"thumbnail": "images/product_2.png",
+		"shortDescription": "product 2",
+		"originalPrice": 610,
+		"isNew": true,
+		"isSale": false,
+		"type": 2
+	},
+	{
+		"id": 3,
+		"categoryId": "cate002",
+		"name": "Blue Yeti USB Microphone Blackout Edition",
+		"image": "images/product_3.png",
+		"thumbnail": "images/product_3.png",
+		"shortDescription": "product 3",
+		"originalPrice": 120,
+		"isNew": false,
+		"isSale": false,
+		"type": 3
+	},
+	{
+		"id": 4,
+		"categoryId": "cate003",
+		"name": "DYMO LabelWriter 450 Turbo Thermal Label Printer",
+		"image": "images/product_4.png",
+		"thumbnail": "images/product_4.png",
+		"shortDescription": "product 4",
+		"originalPrice": 410,
+		"isNew": false,
+		"isSale": true,
+		"type": 4
+	}
+]

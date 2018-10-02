@@ -20,7 +20,7 @@ jQuery(document).ready(function($)
 {
 	"use strict";
 
-	/* 
+	/*
 
 	1. Vars and Inits
 
@@ -39,7 +39,7 @@ jQuery(document).ready(function($)
 
 	$(window).on('resize', function()
 	{
-		initFixProductBorder();
+		// initFixProductBorder();
 		setHeader();
 	});
 
@@ -51,11 +51,12 @@ jQuery(document).ready(function($)
 	initMenu();
 	initTimer();
 	initFavorite();
-	initFixProductBorder();
-	initIsotopeFiltering();
+	// initFixProductBorder();
+	// TODO: we disable jquery based animation
+	// initIsotopeFiltering();
 	initSlider();
 
-	/* 
+	/*
 
 	2. Set Header
 
@@ -91,7 +92,7 @@ jQuery(document).ready(function($)
 		}
 	}
 
-	/* 
+	/*
 
 	3. Init Menu
 
@@ -154,7 +155,7 @@ jQuery(document).ready(function($)
 					    	panel.style.maxHeight = panel.scrollHeight + "px";
 					    }
 					}
-				}	
+				}
 			}
 		}
 	}
@@ -174,7 +175,7 @@ jQuery(document).ready(function($)
 		menuActive = false;
 	}
 
-	/* 
+	/*
 
 	4. Init Timer
 
@@ -192,7 +193,7 @@ jQuery(document).ready(function($)
 	    	date.setDate(date.getDate() + 3);
 	    	var target_date = date.getTime();
 	    	//----------------------------------------
-	 
+
 			// variables for time units
 			var days, hours, minutes, seconds;
 
@@ -206,14 +207,14 @@ jQuery(document).ready(function($)
 			    // find the amount of "seconds" between now and target
 			    var current_date = new Date().getTime();
 			    var seconds_left = (target_date - current_date) / 1000;
-			 
+
 			    // do some time calculations
 			    days = parseInt(seconds_left / 86400);
 			    seconds_left = seconds_left % 86400;
-			     
+
 			    hours = parseInt(seconds_left / 3600);
 			    seconds_left = seconds_left % 3600;
-			     
+
 			    minutes = parseInt(seconds_left / 60);
 			    seconds = parseInt(seconds_left % 60);
 
@@ -221,13 +222,13 @@ jQuery(document).ready(function($)
 			    d.text(days);
 			    h.text(hours);
 			    m.text(minutes);
-			    s.text(seconds); 
-			 
+			    s.text(seconds);
+
 			}, 1000);
-    	}	
+    	}
     }
 
-    /* 
+    /*
 
 	5. Init Favorite
 
@@ -265,7 +266,7 @@ jQuery(document).ready(function($)
     	}
     }
 
-    /* 
+    /*
 
 	6. Init Fix Product Border
 
@@ -350,11 +351,11 @@ jQuery(document).ready(function($)
 					var product = $(products[i]);
 					product.css('border-right', 'none');
 				}
-			}	
+			}
     	}
     }
 
-    /* 
+    /*
 
 	7. Init Isotope Filtering
 
@@ -362,6 +363,7 @@ jQuery(document).ready(function($)
 
     function initIsotopeFiltering()
     {
+
     	if($('.grid_sorting_button').length)
     	{
     		$('.grid_sorting_button').click(function()
@@ -374,7 +376,7 @@ jQuery(document).ready(function($)
 
 		        $('.grid_sorting_button.active').removeClass('active');
 		        $(this).addClass('active');
-		 
+
 		        var selector = $(this).attr('data-filter');
 		        $('.product-grid').isotope({
 		            filter: selector,
@@ -385,13 +387,13 @@ jQuery(document).ready(function($)
 		            }
 		        });
 
-		        
+
 		         return false;
 		    });
     	}
     }
 
-    /* 
+    /*
 
 	8. Init Slider
 
