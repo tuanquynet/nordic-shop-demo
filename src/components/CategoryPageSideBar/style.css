@@ -1,0 +1,25 @@
+.product_section_container
+{
+	margin-top: 150px;
+}
+.product_section
+{
+
+}
+.sidebar
+{
+	float: left;
+	width: 200px;
+	padding-right: 17px;
+}
+.sidebar_section
+{
+	padding-bottom: 35px;
+	margin-bottom: 50px;
+	border-bottom: solid 1px #ebebeb;
+}
+.sidebar_title h5
+{
+	font-size: 18px;
+	margin-bottom: 21px;
+}

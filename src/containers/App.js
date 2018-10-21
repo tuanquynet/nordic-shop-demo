@@ -1,16 +1,32 @@
-import React, { Component } from 'react';
-// import logo from './logo.svg';
-import './App.css';
-import HomePage from './HomePage';
+/* REACT CORE */
+import React from 'react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
-class App extends Component {
-	render() {
-		return (
-		<div className="HomePage">
-			<HomePage />
-		</div>
-		);
-	}
+
+
+/* Import Views */
+import HomePage from '../containers/HomePage';
+import Category from '../containers/Category';
+import ProductDetailPage from '../containers/ProductDetailPage';
+import Contact from '../containers/Contact';
+import NoMatch from '../containers/NoMatch';
+
+import './App.css'
+
+const Routes = () => {
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path='/' component={HomePage} />
+        <Route exact path='/categories' component={Category} />
+        <Route exact path='/categories/:categoryId?' component={Category} />
+        <Route exact path='/product/:id' component={ProductDetailPage} />
+        <Route exact path='/promotions' component={() => "Welcome To Promotions Page"} />
+        <Route exact path='/contact' component={Contact} />
+        <Route component={NoMatch} />
+      </Switch>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default Routes

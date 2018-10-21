@@ -48,6 +48,12 @@ class ProductCard extends Component {
 		}
 	}
 
+	onClickHandler = () => {
+		if(this.props.onClickProduct) {
+			this.props.onClickProduct(this.props.id);
+		}
+	}
+
 	render() {
 		const { id, name, thumbnail, isNew, isSale, linkRedirect, originalPrice, saleOf, salePrice, type } = this.props;
 
@@ -55,7 +61,7 @@ class ProductCard extends Component {
 
 
 		return (
-			<div key={id} className={`product-item ${typeName}`}>
+			<div onClick={this.onClickHandler} key={`product-${id}`} className={`product-item ${typeName}`}>
 				<div className="product discount product_filter">
 					<div className="product_image">
 						<img src={thumbnail} alt="" />
