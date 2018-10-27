@@ -1,0 +1,57 @@
+.quantity
+{
+	width: 100%;
+	height: 40px;
+	margin-top: 23px;
+}
+.quantity_selector
+{
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	width: 132px;
+	height: 100%;
+	border: solid 1px #e5e5e5;
+	margin-left: 29px;
+}
+.quantity_selector span
+{
+	font-weight: 500;
+	color: #232530;
+}
+
+.plus:hover,
+.minus:hover
+{
+	color: #b5aec4;
+}
+
+.product_favorite
+{
+	width: 40px;
+	height: 100%;
+	margin-left: 22px;
+	border: solid 1px #e5e5e5;
+	border-radius: 2px;
+	cursor: pointer;
+}
+.product_favorite:hover::after
+{
+	color: #fe4c50;
+}
+.product_favorite::after
+{
+	font-family: 'FontAwesome';
+	content:'\f08a';
+	font-size: 14px;
+}
+.product_favorite.active::after
+{
+	content:'\f004';
+	color: #fe4c50;
+}

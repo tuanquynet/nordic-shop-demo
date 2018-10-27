@@ -1,0 +1,58 @@
+
+.checkboxes li
+{
+	height: 40px;
+	line-height: 40px;
+}
+.checkboxes li.active i
+{
+	color: #fe4c50;
+	margin-right: 21px;
+}
+.checkboxes li.active i::after
+{
+	display: block;
+	position: absolute;
+	top: 1px;
+	left: 1px;
+	font-family: 'FontAwesome';
+	font-size: 10px;
+	content: '\f00c';
+	color: #FFFFFF;
+}
+.checkboxes
+{
+	height: 200px;
+	overflow: hidden;
+}
+.checkboxes.active
+{
+	height: auto;
+}
+.checkboxes li i
+{
+	position: relative;
+	color: #b3b7c8;
+	cursor: pointer;
+	margin-right: 22px;
+}
+.checkboxes li span
+{
+	font-family: 'Poppins', sans-serif;
+	color: #51545f;
+}
+.show_more
+{
+	display: inline-block;
+	cursor: pointer;
+}
+.show_more span
+{
+	height: 40px;
+	line-height: 40px;
+	color: #fe4c50;
+}
+.show_more span:first-child
+{
+	margin-right: 11px;
+}

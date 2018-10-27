@@ -9,29 +9,49 @@ class NewArrivalBlock extends React.Component{
 		this.onClickQuickCategory = this.onClickQuickCategory.bind(this);
 	}
 
+	categoryOfTypeAll = {id: 'all', name: 'all'}
+
 	state = {selectedCategory: 'all'}
+
+	componentWillReceiveProps(nextProps) {
+		console.log('nextProps');
+		console.log(nextProps);
+	}
 
 	onClickQuickCategory(e){
 		const categoryId = e.target.getAttribute('data-id');
-
+/*
 		this.setState({
 			selectedCategory: categoryId
-		});
+		}); */
+		this.props.onClickQuickCategory(categoryId);
 	}
 
-	getCategoryClassName(categoryId) {
+	getCategoryClassName(categoryId, selectedCategoryId) {
 		let className = 'grid_sorting_button button d-flex flex-column justify-content-center align-items-center is-checked';
-		const {selectedCategory} = this.state;
-		if (selectedCategory === categoryId) {
+		if (selectedCategoryId === categoryId) {
 			className += ' active isChecked'
 		}
 
 		return className;
 	}
 
-	render(){
+	renderQuickCategoryBar = (categories, selectedCategoryId) => {
+		categories = categories || [];
 
-		let products = this.props.products.map(product => {
+		const liItems = categories.map((item) => {
+			return <li onClick={this.onClickQuickCategory} className={this.getCategoryClassName(item.id, selectedCategoryId)} data-id={item.id} data-filter="*">{item.name}</li>
+		});
+
+		return liItems.length
+			? (<ul className="arrivals_grid_sorting clearfix button-group filters-button-group">
+				{liItems}
+				</ul>)
+			: (null);
+	}
+
+	render(){
+		const products = this.props.products.map(product => {
 			return {
 				...product,
 				saleOf: product.saleOf ? product.saleOf : 0,
@@ -40,12 +60,7 @@ class NewArrivalBlock extends React.Component{
 			}
 		});
 
-		const {selectedCategory} = this.state;
-		products = selectedCategory === 'all'
-			? products
-			: products.filter((item) => {
-				return item.categoryId === selectedCategory;
-			});
+		const {categories = [], selectedCategoryId} = this.props;
 
 		return(
 			<div className="new_arrivals">
@@ -60,12 +75,7 @@ class NewArrivalBlock extends React.Component{
 					<div className="row align-items-center">
 						<div className="col text-center">
 							<div className="new_arrivals_sorting">
-								<ul className="arrivals_grid_sorting clearfix button-group filters-button-group">
-									<li onClick={this.onClickQuickCategory} className={this.getCategoryClassName('all')} data-id="all" data-filter="*">all</li>
-									<li onClick={this.onClickQuickCategory} className={this.getCategoryClassName('cate002')} data-id="cate002" data-filter=".women">women's</li>
-									<li onClick={this.onClickQuickCategory} className={this.getCategoryClassName('cate003')}  data-id="cate003" data-filter=".accessories">accessories</li>
-									<li onClick={this.onClickQuickCategory} className={this.getCategoryClassName('cate001')}  data-id="cate001" data-filter=".men">men's</li>
-								</ul>
+								{this.renderQuickCategoryBar([this.categoryOfTypeAll].concat(categories), selectedCategoryId)}
 							</div>
 						</div>
 					</div>

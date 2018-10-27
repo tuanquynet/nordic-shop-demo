@@ -1,0 +1,40 @@
+
+.product_sorting_container_bottom
+{
+	margin-top: 24px;
+}
+.product_sorting_container_bottom .product_sorting
+{
+	float: right;
+}
+
+
+
+.product_sorting_container_bottom .product_sorting > li
+{
+	width: 144px;
+	margin-right: 0px;
+	padding-right: 12px;
+}
+.product_sorting_container_bottom .product_sorting li span:nth-child(2)
+{
+	margin-left: 24px;
+}
+
+.product_sorting_container_bottom .pages
+{
+	float: left;
+}
+.product_sorting_container_bottom .pages .page_current
+{
+	background: #fe4c50;
+	border: none;
+}
+.page_current span
+{
+	color: #51545f;
+}
+.product_sorting_container_bottom .pages .page_current span
+{
+	color: #FFFFFF;
+}
