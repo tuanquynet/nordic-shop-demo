@@ -3,11 +3,6 @@ import "./style.css";
 
 
 class ShippingInfoBar extends React.Component{
-
-    constructor(prop){
-        super(prop)
-    }
-
     render(){
         return(
             <div className="benefit">
@@ -26,7 +21,7 @@ class ShippingInfoBar extends React.Component{
                             <div className="benefit_item d-flex flex-row align-items-center">
                                 <div className="benefit_icon"><i className="fa fa-money" aria-hidden="true"></i></div>
                                 <div className="benefit_content">
-                                    <h6>cach on delivery</h6>
+                                    <h6>cash on delivery</h6>
                                     <p>The Internet Tend To Repeat</p>
                                 </div>
                             </div>

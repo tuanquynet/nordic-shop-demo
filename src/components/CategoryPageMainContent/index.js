@@ -10,9 +10,27 @@ class CategoryPageMainContent extends React.Component{
             <div className="main_content">
                 <div className="row">
 					<div className="col">
-                        <SortingPerPageBar/>
-                        <ProductList products={this.props.products} onClickProduct={this.props.onClickProduct}/>
-                        <SortingPerPageBar/>
+                        <SortingPerPageBar
+							selectedSortOption={this.props.selectedSortOption}
+							onChangeSortOption={this.props.onChangeSortOption}
+							selectedPerPage={this.props.selectedPerPage}
+							onChangePerPage={this.props.onChangePerPage}
+							totalPage={this.props.totalPage}
+							selectedPageNum={this.props.selectedPageNum}
+							onChangePageNum={this.props.onChangePageNum}
+							/>
+						<ProductList
+							products={this.props.products}
+							onClickProduct={this.props.onClickProduct}/>
+                        <SortingPerPageBar
+							selectedSortOption={this.props.selectedSortOption}
+							onChangeSortOption={this.props.onChangeSortOption}
+							selectedPerPage={this.props.selectedPerPage}
+							onChangePerPage={this.props.onChangePerPage}
+							totalPage={this.props.totalPage}
+							selectedPageNum={this.props.selectedPageNum}
+							onChangePageNum={this.props.onChangePageNum}
+							/>
                     </div>
                 </div>
 

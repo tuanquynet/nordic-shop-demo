@@ -1,7 +1,7 @@
 import {  /*put, call,*/ fork } from 'redux-saga/effects';
 import {doFetch as fetch} from '../helpers/request';
-import {getCategoryFlow} from './category';
-import {getProductByCategoryFlow, getProductsFlow} from './product';
+import {getCategoryFlow, getOneCategoryFlow} from './category';
+import {getProductByCategoryFlow, getProductsFlow, getProductDetailFlow} from './product';
 
 export function fetchApi(url) {
 	return fetch( url )
@@ -19,5 +19,7 @@ export default function* root() {
 	yield fork(getCategoryFlow);
 	yield fork(getProductByCategoryFlow);
 	yield fork(getProductsFlow);
+	yield fork(getOneCategoryFlow);
+	yield fork(getProductDetailFlow);
 
 }

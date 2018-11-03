@@ -42,12 +42,14 @@
 	-o-transition: opacity 0.3s ease;
 	transition: all 0.3s ease;
 }
+
 .product_sorting > li:hover ul
 {
 	visibility: visible;
 	opacity: 1;
 	top: calc(100% + 1px);
 }
+
 .product_sorting li ul li
 {
 	display: block;
@@ -71,6 +73,10 @@
 .product_sorting li ul li span:hover
 {
 	color: #b5aec4;
+}
+.product_sorting li ul li.active
+{
+	background-color: #f0f0f0;
 }
 .product_sorting li ul li:last-child span
 {

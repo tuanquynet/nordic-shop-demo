@@ -19,6 +19,10 @@ class FilterByPrice extends React.Component{
 		this.setState({ priceFilterValue: value });
 	}
 
+	onClickFilterButtonHandler = () => {
+		this.props.onChangeFilterPrice(this.state.priceFilterValue);
+	}
+
     render(){
         return(
             <div className="sidebar_section">
@@ -32,7 +36,9 @@ class FilterByPrice extends React.Component{
 						value={this.state.priceFilterValue}
 						onChange={this.onChangeInputRange} draggableTrack />
 				</p>
-				<div className="filter_button"><span>filter</span></div>
+				<div className="filter_button" onClick={this.onClickFilterButtonHandler}>
+					<span>filter</span>
+				</div>
 			</div>
 
         );

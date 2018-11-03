@@ -26,6 +26,30 @@ export function* getProductsFlow() {
 	}
 }
 
+function* getProductDetail(url) {
+	yield put({type: AppFlowActions.SENDING_REQUEST, sending:true});
+
+	try {
+		let response = yield call(fetch, url);
+		yield put({type:AppFlowActions.SENDING_REQUEST, sending: false});
+		yield put({type:AppFlowActions.GET_PRODUCT_DETAIL_COMPLETE, data:response});
+		return response;
+	} catch (error) {
+		yield put({type: AppFlowActions.REQUEST_ERROR, error: error.message});
+	}
+}
+
+export function* getProductDetailFlow() {
+	const INFINITE = true;
+
+	while (INFINITE) {
+		let request = yield take(AppFlowActions.GET_PRODUCT_DETAIL_REQUEST);
+		let {url} = request;
+
+		yield call(getProductDetail, url);
+	}
+}
+
 
 function* getProductByCategory(url) {
 	yield put({type: AppFlowActions.SENDING_REQUEST, sending:true});

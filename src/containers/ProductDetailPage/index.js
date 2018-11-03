@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Breadcrumb from '../../components/Breadcrumb';
@@ -8,45 +10,38 @@ import config from "../../config";
 
 import "./style.css";
 
+import { getOneCategory } from '../../actions/category';
+import { getProductDetail } from '../../actions/product';
+
 class ProductDetailPage extends Component {
 	state = {
 		productDetail: {},
-		quantity: 0,
+		quantity: 1,
 		category: {},
 		selectedThumb: 0,
 	}
 
 	componentDidMount() {
-		this.fetchProduct(this.props.match.params.id);
+		this.fetchProduct(this.props.match.params.productId);
+	}
+
+	componentWillReceiveProps(nextProps) {
+		const currentProductDetail = this.props.productDetail || {};
+		const nextProductDetail = nextProps.productDetail || {};
+		const changed = !currentProductDetail
+			|| currentProductDetail.categoryId !== nextProductDetail.categoryId;
+		if (changed) {
+			this.fetchCategoryDetail(nextProps.productDetail.categoryId);
+		}
 	}
 
 	fetchProduct(productId) {
 		// productId = '5bb2e59c133ed3128d12eef5';
-		fetch(new Request(`${config.apiUrl}/products/${productId}`))
-			.then(response=> response.json())
-			.then(response=>{
-					const productDetail = response.body;
-					this.setState({
-						productDetail,
-					});
-					this.fetchCategoryDetail(productDetail.categoryId);
-					console.log('products productDetail');
-			}).catch(err=>{
-					console.log("Error Get productDetail");
-			});
+		this.props.getProductDetail(`${config.apiUrl}/products/${productId}`);
 	}
 
 	fetchCategoryDetail(categoryId) {
-		fetch(new Request(`${config.apiUrl}/categories/${categoryId}`))
-			.then(response=> response.json())
-			.then(response=>{
-					this.setState({
-						category: response.body,
-					});
-					console.log('products productDetail');
-			}).catch(err=>{
-					console.log("Error Get productDetail");
-			});
+		this.props.getOneCategory(`${config.apiUrl}/categories/${categoryId}`);
 	}
 
 	onClickThumb = (e) => {
@@ -77,7 +72,7 @@ class ProductDetailPage extends Component {
 	onMinusQuantity = () => {
 		let {quantity} = this.state;
 		this.setState({
-			quantity: Math.max(0, quantity - 1),
+			quantity: Math.max(1, quantity - 1),
 		})
 	}
 
@@ -89,13 +84,14 @@ class ProductDetailPage extends Component {
 	}
 
     render() {
-		const {productDetail = {}, selectedThumb} = this.state;
+		const {selectedThumb} = this.state;
+		const {productDetail = {}, category = {}} = this.props;
 		const thumbnails = productDetail ? productDetail.thumbnails : [];
 		const {images = []} = productDetail;
 		const selectedImageUrl = images
 			? `url(${images[selectedThumb]})`
 			: 'url("")';
-		const {quantity, category}  = this.state;
+		const {quantity}  = this.state;
 		const breadcrumbValues = [].concat({
 			label: 'Home',
 			link: '/',
@@ -121,9 +117,9 @@ class ProductDetailPage extends Component {
 											{this.renderThumbnails(thumbnails, selectedThumb)}
 										</div>
 									</div>
-									<div class="col-lg-9 image_col order-lg-2 order-1">
-										<div class="single_product_image">
-											<div class="single_product_image_background" style={{backgroundImage: selectedImageUrl}}></div>
+									<div className="col-lg-9 image_col order-lg-2 order-1">
+										<div className="single_product_image">
+											<div className="single_product_image_background" style={{backgroundImage: selectedImageUrl}}></div>
 										</div>
 									</div>
 								</div>
@@ -171,4 +167,25 @@ class ProductDetailPage extends Component {
     }
 }
 
-export default ProductDetailPage;
+
+const mapStateToProps = (state) => {
+	const {
+		productDetail = {
+		},
+	} = state;
+
+	return {
+		productDetail: productDetail.detail,
+		category: productDetail.category,
+	};
+};
+
+// at the moment we share the same actions with NewArrivalBlock for fetching category, product
+const mapDispatchToProps = {
+	getProductDetail,
+	getOneCategory,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDetailPage);
+
+// export default ProductDetailPage;

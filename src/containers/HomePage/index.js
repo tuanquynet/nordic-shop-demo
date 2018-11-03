@@ -8,7 +8,7 @@ import NewArrivalBlock from './../../components/NewArrivalBlock';
 import DealOfTheWeekBlock from '../../components/DealOfTheWeekBlock';
 import ShippingInfoBar from './../../components/ShippingInfoBar/index';
 import QuickCategoryBar from '../../components/QuickCategoryBar';
-import products from '../../data/products.json';
+// import products from '../../data/products.json';
 
 import config from '../../config';
 
@@ -49,7 +49,7 @@ class HomePage extends Component {
 	render() {
 		const {categories, products} = this.props;
 		return (
-			<div className="super_container">
+			<div className="super_container home-page">
 				<Header />
 				<HeroBanner />
 				<QuickCategoryBar />

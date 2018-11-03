@@ -26,3 +26,27 @@ export function* getCategoryFlow() {
 		yield call(getCategory, url);
 	}
 }
+
+function* getOneCategory(url) {
+	yield put({type: AppFlowActions.SENDING_REQUEST, sending:true});
+
+	try {
+		let response = yield call(fetch, url);
+		yield put({type:AppFlowActions.SENDING_REQUEST, sending: false});
+		yield put({type:AppFlowActions.GET_ONE_CATEGORY_COMPLETE, data:response});
+		return response;
+	} catch (error) {
+		yield put({type: AppFlowActions.REQUEST_ERROR, error: error.message});
+	}
+}
+
+export function* getOneCategoryFlow() {
+	const INFINITE = true;
+
+	while (INFINITE) {
+		let request = yield take(AppFlowActions.GET_ONE_CATEGORY_REQUEST);
+		let {url} = request;
+
+		yield call(getOneCategory, url);
+	}
+}

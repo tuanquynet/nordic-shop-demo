@@ -6,7 +6,7 @@ class Breadcrumb extends React.Component{
 			let item;
 			if (key === values.length - 1) {
 				item = (
-					<li className={key === values.length ? 'active' : ''}>
+					<li key={key} className={key === values.length ? 'active' : ''}>
 						<span>
 							<i className="fa fa-angle-right" aria-hidden="true"></i>
 							{value.label}
@@ -15,7 +15,7 @@ class Breadcrumb extends React.Component{
 				)
 			} else if (key > 0) {
 				item = (
-					<li className={key === values.length ? 'active' : ''}>
+					<li key={key} className={key === values.length ? 'active' : ''}>
 						<a href={value.link}>
 							<i className="fa fa-angle-right" aria-hidden="true"></i>
 							{value.label}
@@ -23,7 +23,7 @@ class Breadcrumb extends React.Component{
 					</li>
 				)
 			} else {
-				item = (<li className={key === values.length ? 'active' : ''}>
+				item = (<li key={key} className={key === values.length ? 'active' : ''}>
 				<a href={value.link}>{value.label}</a>
 				</li>);
 			}
