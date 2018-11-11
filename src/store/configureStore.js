@@ -1,7 +1,18 @@
 import { createStore, applyMiddleware } from 'redux';
-import rootReducer from '../reducers';
+import { persistStore, persistReducer } from 'redux-persist'
 import createSagaMiddleware from 'redux-saga';
+import storage from 'redux-persist/lib/storage'
+
+import rootReducer from '../reducers';
 import rootSaga from '../sagas';
+
+const persistConfig = {
+	key: 'root',
+	storage,
+	whitelist: ['myCart'],
+}
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 /*
  * Configure store with sagas and other middleware
@@ -10,12 +21,17 @@ import rootSaga from '../sagas';
 export default function configureStore() {
 	const sagaMiddleware = createSagaMiddleware();
 	const store = createStore(
-		rootReducer,
-		applyMiddleware(sagaMiddleware)
+		// rootReducer,
+		persistedReducer,
+		window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+		applyMiddleware(sagaMiddleware),
 	);
+
 	// start sagas here
 	sagaMiddleware.run(rootSaga);
 
-	return store;
+	let persistor = persistStore(store)
+	return { store, persistor };
+	// return store;
 }
 

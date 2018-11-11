@@ -11,9 +11,11 @@ import QuickCategoryBar from '../../components/QuickCategoryBar';
 // import products from '../../data/products.json';
 
 import config from '../../config';
+import {PageNames} from '../../constants';
 
 import { getCategories } from '../../actions/category';
 import { getProductByCategory, getProducts } from '../../actions/product';
+import { addToCart } from '../../actions/my-cart';
 
 import './style.css'
 
@@ -46,11 +48,19 @@ class HomePage extends Component {
 		this.fetchProductByCategory(categoryId);
 	}
 
+	onClickCheckoutHandler = (e) => {
+		this.props.history.push(PageNames.MY_CART);
+	}
+
+	onClickAddToCartHandler = (product) => {
+		this.props.addToCart(product);
+	}
+
 	render() {
 		const {categories, products} = this.props;
 		return (
 			<div className="super_container home-page">
-				<Header />
+				<Header totalItemsInCart={this.props.myCart.totalItems} onClickCheckout={this.onClickCheckoutHandler}/>
 				<HeroBanner />
 				<QuickCategoryBar />
 				<div>
@@ -60,6 +70,7 @@ class HomePage extends Component {
 						categoryTotal={categories.total}
 						categories={categories.data}
 						productTotal={products.total}
+						onClickAddToCart={this.onClickAddToCartHandler}
 						products={products.data}/>
 					<DealOfTheWeekBlock/>
 					<ShippingInfoBar/>
@@ -80,6 +91,7 @@ const mapStateToProps = (state) => {
 			total: 0,
 			data: [],
 		},
+		myCart,
 	} = state;
 
 	return {
@@ -91,6 +103,7 @@ const mapStateToProps = (state) => {
 			total: categories.total,
 			data: categories.records || [],
 		},
+		myCart,
 	};
 };
 
@@ -98,6 +111,7 @@ const mapDispatchToProps = {
 	getCategories,
 	getProductByCategory,
 	getProducts,
+	addToCart,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

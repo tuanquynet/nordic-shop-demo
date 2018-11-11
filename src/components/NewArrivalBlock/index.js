@@ -83,7 +83,7 @@ class NewArrivalBlock extends React.Component{
 						<div className="col">
 							<div className="product-grid" >
 								{products.map(product =>(
-									<ProductCard key={product.id} {...product} />
+									<ProductCard key={product.id} product={product} onClickAddToCart={this.props.onClickAddToCart} />
 								))}
 							</div>
 						</div>

@@ -9,7 +9,7 @@ class Header extends Component {
 		return (
 			<header className="header trans_300">
 				<TopNav />
-				<MainNavigation/>
+				<MainNavigation {...this.props}/>
 			</header>
 		);
 	}

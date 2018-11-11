@@ -16,6 +16,8 @@ import config from "../../config";
 
 import { getCategories } from '../../actions/category';
 import { getProductByCategory, getProducts } from '../../actions/product';
+import { addToCart } from '../../actions/my-cart';
+import {PageNames} from '../../constants';
 
 class Category extends React.Component{
     state = {
@@ -153,6 +155,15 @@ class Category extends React.Component{
 		this.fetchProducts();
 	}
 
+	onClickAddToCartHandler = (product) => {
+		console.log('onClickAddToCartHandler ');
+		this.props.addToCart(product);
+	}
+
+	onClickCheckoutHandler = (e) => {
+		this.props.history.push(PageNames.MY_CART);
+	}
+
     render() {
         const {
 			categoryList = [],
@@ -178,7 +189,7 @@ class Category extends React.Component{
 
         return(
             <div className="super_container">
-				<Header />
+				<Header totalItemsInCart={this.props.myCart.totalItems} onClickCheckout={this.onClickCheckoutHandler}/>
                 <div className="container product_section_container">
                     <div className="row">
                         <div className="col product_section clearfix">
@@ -199,6 +210,7 @@ class Category extends React.Component{
 								onChangePerPage={this.onChangePerPageHandler}
 								selectedPageNum={selectedPageNum}
 								totalPage={totalPage}
+								onClickAddToCart={this.onClickAddToCartHandler}
 								onChangePageNum={this.onChangePageNumHandler}
 								/>
                         </div>
@@ -221,6 +233,7 @@ const mapStateToProps = (state) => {
 			total: 0,
 			data: [],
 		},
+		myCart,
 	} = state;
 
 	return {
@@ -232,6 +245,7 @@ const mapStateToProps = (state) => {
 			total: categories.total,
 			data: categories.records || [],
 		},
+		myCart,
 	};
 };
 
@@ -240,6 +254,7 @@ const mapDispatchToProps = {
 	getCategories,
 	getProductByCategory,
 	getProducts,
+	addToCart,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Category);

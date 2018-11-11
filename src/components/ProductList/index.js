@@ -16,7 +16,12 @@ class ProductList extends React.Component{
         return(
             <div className="product-grid">
                 {products.map(product=>(
-                    <ProductCard key={product.id}  onClickProduct={this.props.onClickProduct} {...product}/>
+					<ProductCard
+						key={product.id}
+						onClickProduct={this.props.onClickProduct}
+						onClickAddToCart={this.props.onClickAddToCart}
+						product={product}
+						/>
                 ))}
             </div>
         )

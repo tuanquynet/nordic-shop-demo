@@ -7,11 +7,13 @@ import Breadcrumb from '../../components/Breadcrumb';
 import QuantitySelection from '../../components/QuantitySelection';
 import AddToCart from "../../components/AddToCart";
 import config from "../../config";
+import {PageNames} from '../../constants';
 
 import "./style.css";
 
 import { getOneCategory } from '../../actions/category';
 import { getProductDetail } from '../../actions/product';
+import { addToCart } from '../../actions/my-cart';
 
 class ProductDetailPage extends Component {
 	state = {
@@ -83,6 +85,17 @@ class ProductDetailPage extends Component {
 		})
 	}
 
+	onClickAddToCartHandler = (e) => {
+		e.preventDefault();
+		const {productDetail} = this.props;
+		const {quantity} = this.state;
+		this.props.addToCart(productDetail, quantity);
+	}
+
+	onClickCheckoutHandler = (e) => {
+		this.props.history.push(PageNames.MY_CART);
+	}
+
     render() {
 		const {selectedThumb} = this.state;
 		const {productDetail = {}, category = {}} = this.props;
@@ -105,7 +118,7 @@ class ProductDetailPage extends Component {
 
     	return (
 			<div className="super_container">
-				<Header />
+				<Header totalItemsInCart={this.props.myCart.totalItems} onClickCheckout={this.onClickCheckoutHandler}/>
 				<div className="container single_product_container">
 					<Breadcrumb values={breadcrumbValues}/>
 					<div className="row">
@@ -154,7 +167,7 @@ class ProductDetailPage extends Component {
 								<div className="quantity d-flex flex-column flex-sm-row align-items-sm-center">
 									<span>Quantity:</span>
 									<QuantitySelection value={quantity} onMinus={this.onMinusQuantity} onPlus={this.onPlusQuantity}></QuantitySelection>
-									<AddToCart></AddToCart>
+									<AddToCart onClick={this.onClickAddToCartHandler}></AddToCart>
 									<div className="product_favorite d-flex flex-column align-items-center justify-content-center"></div>
 								</div>
 							</div>
@@ -172,11 +185,13 @@ const mapStateToProps = (state) => {
 	const {
 		productDetail = {
 		},
+		myCart,
 	} = state;
 
 	return {
 		productDetail: productDetail.detail,
 		category: productDetail.category,
+		myCart,
 	};
 };
 
@@ -184,6 +199,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
 	getProductDetail,
 	getOneCategory,
+	addToCart,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductDetailPage);

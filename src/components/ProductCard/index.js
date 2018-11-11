@@ -50,12 +50,21 @@ class ProductCard extends Component {
 
 	onClickHandler = () => {
 		if(this.props.onClickProduct) {
-			this.props.onClickProduct(this.props.id);
+			this.props.onClickProduct(this.props.product.id);
+		}
+	}
+
+	onClickAddToCartHandler = (e) => {
+		e.preventDefault();
+		e.stopPropagation();
+		const {product} = this.props;
+		if(this.props.onClickAddToCart) {
+			this.props.onClickAddToCart(product);
 		}
 	}
 
 	render() {
-		const { id, name, thumbnail, isNew, isSale, linkRedirect, originalPrice, saleOf, salePrice, type } = this.props;
+		const { id, name, thumbnail, isNew, isSale, linkRedirect, originalPrice, saleOf, salePrice, type } = this.props.product;
 
 		let typeName = this.checkTypeProduct(type);
 
@@ -80,7 +89,7 @@ class ProductCard extends Component {
 						</div>
 					</div>
 				</div>
-				<div className="red_button add_to_cart_button"><a href="#">add to cart</a></div>
+				<div className="red_button add_to_cart_button" ><a href="#" onClick={this.onClickAddToCartHandler}>add to cart</a></div>
 			</div>
 		);
 	}

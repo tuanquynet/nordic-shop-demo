@@ -2,6 +2,7 @@ import {  /*put, call,*/ fork } from 'redux-saga/effects';
 import {doFetch as fetch} from '../helpers/request';
 import {getCategoryFlow, getOneCategoryFlow} from './category';
 import {getProductByCategoryFlow, getProductsFlow, getProductDetailFlow} from './product';
+import {addToCartFlow, removeFromCartFlow} from './my-cart';
 
 export function fetchApi(url) {
 	return fetch( url )
@@ -21,5 +22,7 @@ export default function* root() {
 	yield fork(getProductsFlow);
 	yield fork(getOneCategoryFlow);
 	yield fork(getProductDetailFlow);
+	yield fork(addToCartFlow);
+	yield fork(removeFromCartFlow);
 
 }

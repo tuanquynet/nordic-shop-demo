@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-
+import { PersistGate } from 'redux-persist/integration/react';
 
 import configureStore from './store/configureStore';
 import createRoutes from './routes';
@@ -14,15 +14,15 @@ import registerServiceWorker from './registerServiceWorker';
 
 
 const routes = createRoutes();
-const store = configureStore();
+// const store = configureStore();
+const {store, persistor} = configureStore();
 
 function renderRoot( ) {
-
 	ReactDOM.render((
 		<Provider store={store} >
-			<div>
+			<PersistGate loading={null} persistor={persistor}>
 				{routes}
-			</div>
+		    </PersistGate>
 		</Provider>
 	), document.getElementById('root'));
 }

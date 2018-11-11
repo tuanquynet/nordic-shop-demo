@@ -1,0 +1,45 @@
+.mycart-cost-summary {
+	background-color: #f0f0f080;
+    padding: 20px;
+    border-radius: 5px
+}
+
+.mycart-cost-summary .red_button {
+	width: 100%;
+}
+
+.total-block {
+	padding: 20px 0px;
+}
+
+.total-block .total {
+	color: red;
+	float: right;
+}
+
+.mycart-page .table {
+	background-color: #f0f0f080;
+	border: none;
+	margin: 0px;
+	border-radius: 5px;
+}
+.mycart-page  .table td {
+	border: none;
+	padding: 20px 10px;
+}
+.mycart-page .page-header {
+	padding: 20px;
+}
+
+.mycart-page .product-image {
+	max-width: 80px;
+	max-height: 80px;
+}
+
+.mycart-page .remove_button {
+	padding: 0px 15px;
+}
+
+.mycart-page .price-column {
+	width: 10%;
+}

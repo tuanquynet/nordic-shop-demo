@@ -2,10 +2,9 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import "./style.css";
 class MainNavigation extends React.Component{
-    constructor(prop){
-        super(prop);
-    }
     render(){
+		const {totalItemsInCart = 0} = this.props;
+
         return(
             <div className="main_nav_container">
 				<div className="container">
@@ -24,11 +23,14 @@ class MainNavigation extends React.Component{
 								</ul>
 								<ul className="navbar_user">
 									<li><a href="#"><i className="fa fa-search" aria-hidden="true"></i></a></li>
-									
-									<li className="checkout">
+									<li className="checkout" onClick={this.props.onClickCheckout}>
 										<a href="#">
 											<i className="fa fa-shopping-cart" aria-hidden="true"></i>
-											<span id="checkout_items" className="checkout_items">2</span>
+											{
+												totalItemsInCart
+												? (<span id="checkout_items" className="checkout_items">{totalItemsInCart}</span>)
+												: null
+											}
 										</a>
 									</li>
 								</ul>
@@ -43,4 +45,5 @@ class MainNavigation extends React.Component{
         )
     }
 }
- export default MainNavigation;
+
+export default MainNavigation;

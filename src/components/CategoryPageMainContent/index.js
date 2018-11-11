@@ -21,7 +21,9 @@ class CategoryPageMainContent extends React.Component{
 							/>
 						<ProductList
 							products={this.props.products}
-							onClickProduct={this.props.onClickProduct}/>
+							onClickProduct={this.props.onClickProduct}
+							onClickAddToCart={this.props.onClickAddToCart}
+							/>
                         <SortingPerPageBar
 							selectedSortOption={this.props.selectedSortOption}
 							onChangeSortOption={this.props.onChangeSortOption}
